@@ -33,10 +33,10 @@ class Tetromino:
       elif type == 'Z':
          n = 3  # n = number of rows = number of columns in the tile matrix
          # shape of the tetromino Z in its initial orientation
-         occupied_tiles.append((0, 1)) # (column_index, row_index) 
+         occupied_tiles.append((0, 0)) # (column_index, row_index)
+         occupied_tiles.append((1, 0))
          occupied_tiles.append((1, 1))
-         occupied_tiles.append((1, 2))
-         occupied_tiles.append((2, 2))
+         occupied_tiles.append((2, 1))
       elif type == 'S':
          n = 3  # n = number of rows = number of columns in the tile matrix
          # shape of the tetromino S in its initial orientation
