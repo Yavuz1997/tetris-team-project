@@ -9,7 +9,6 @@ import random # used for creating tetrominoes with random types/shapes
 # MAIN FUNCTION OF THE PROGRAM
 #-------------------------------------------------------------------------------
 # Main function where this program starts execution
-# Test line for teaching git
 def start():
    # set the dimensions of the game grid
    grid_h, grid_w = 20, 12
