@@ -5,7 +5,7 @@ import os  # the os module is used for file and directory operations
 from game_grid import GameGrid # the class for modeling the game grid
 from tetromino import Tetromino # the class for modeling the tetrominoes
 import random # used for creating tetrominoes with random types/shapes
-
+#deneme
 # MAIN FUNCTION OF THE PROGRAM
 #-------------------------------------------------------------------------------
 # Main function where this program starts execution
