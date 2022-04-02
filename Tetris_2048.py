@@ -63,6 +63,12 @@ def start():
       # move the active tetromino down by one at each iteration (auto fall)
       success = current_tetromino.move("down", grid)
 
+      # Add : Tiles should move down after line dissapears
+      for row in grid.tile_matrix:
+         if None not in row:
+            for i, val in enumerate(row):
+               row[i] = None
+
       # place the active tetromino on the grid when it cannot go down anymore
       if not success:
          # get the tile matrix of the tetromino without empty rows and columns
@@ -79,6 +85,7 @@ def start():
          grid.current_tetromino = current_tetromino
 
       # display the game grid and the current tetromino
+
       grid.display()
 
    # print a message on the console when the game is over
