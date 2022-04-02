@@ -73,7 +73,7 @@ def start():
          current_tetromino = create_tetromino(grid_h, grid_w)
          grid.current_tetromino = current_tetromino
 
-      # display the game grid and the current tetromino      
+      # display the game grid and the current tetromino
       grid.display()
 
    # print a message on the console when the game is over
@@ -82,7 +82,7 @@ def start():
 # Function for creating random shaped tetrominoes to enter the game grid
 def create_tetromino(grid_height, grid_width):
    # type (shape) of the tetromino is determined randomly
-   tetromino_types = [ 'I', 'O', 'Z' ]
+   tetromino_types = [ 'I', 'O', 'Z', 'S', 'T', 'L', 'J' ]
    random_index = random.randint(0, len(tetromino_types) - 1)
    random_type = tetromino_types[random_index]
    # create and return the tetromino
