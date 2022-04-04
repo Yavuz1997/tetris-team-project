@@ -71,18 +71,11 @@ def start():
       # move the active tetromino down by one at each iteration (auto fall)
       success = current_tetromino.move("down", grid)
 
-      # Check rows from bottom up, if you find a row without empty space
-      # delete the tiles, move all rows above the deleted tiles down by 1
-      for rowIndex, row in enumerate(grid.tile_matrix):
+      # Add : Tiles should move down after line dissapears
+      for row in grid.tile_matrix:
          if None not in row:
-            for columnIndex, val in enumerate(row):
-               row[columnIndex] = None
-            for j, x  in enumerate(grid.tile_matrix):
-               j += rowIndex
-               if (j == 18):
-                  break
-               grid.tile_matrix[j] = grid.tile_matrix[j + 1]
-
+            for i, val in enumerate(row):
+               row[i] = None
 
       # place the active tetromino on the grid when it cannot go down anymore
       if not success:
@@ -109,7 +102,7 @@ def start():
 # Function for creating random shaped tetrominoes to enter the game grid
 def create_tetromino(grid_height, grid_width):
    # type (shape) of the tetromino is determined randomly
-   tetromino_types = [ 'I', 'O', 'Z', 'S', 'T', 'L', 'J' ]
+   tetromino_types = ['Z','I','L','J','O','Z','S']
    random_index = random.randint(0, len(tetromino_types) - 1)
    random_type = tetromino_types[random_index]
    # create and return the tetromino

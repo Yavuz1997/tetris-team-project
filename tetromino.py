@@ -424,29 +424,89 @@ class Tetromino:
       return
 
 
-   def turn(self, key_typed, grid):
+   def can_be_turned(self,grid):
+
+      if self.type == 'O':
+         return False
+
       if self.type == 'Z':
+         if (self.turnType == 3):
+            if not (self.can_be_moved("right", grid)):
+               self.didUpdate = 0
+         elif (self.turnType == 1):
+            if not (self.can_be_moved("left", grid)):
+               self.didUpdate = 0
+         else:
+            self.didUpdate = 1
+      if self.type == 'T':
+         if (self.turnType == 3):
+            if not (self.can_be_moved("left", grid)):
+               self.didUpdate = 0
+         elif (self.turnType == 1):
+            if not (self.can_be_moved("right", grid)):
+               self.didUpdate = 0
+         else:
+            self.didUpdate = 1
+
+      if self.type == 'I':
+         if (self.turnType == 0):
+            if not (self.can_be_moved("left", grid)):
+               self.didUpdate = 0
+         elif (self.turnType == 2):
+            if not (self.can_be_moved("right", grid)):
+               self.didUpdate = 0
+         else:
+            self.didUpdate = 1
+
+      if self.type == 'L':
+         if (self.turnType == 0):
+            if not (self.can_be_moved("left", grid)):
+               self.didUpdate = 0
+         elif (self.turnType == 2):
+            if not (self.can_be_moved("right", grid)):
+               self.didUpdate = 0
+         else:
+            self.didUpdate = 1
+
+      if self.type == 'J':
          if (self.turnType == 0):
             if not (self.can_be_moved("right", grid)):
                self.didUpdate = 0
-         if(self.didUpdate == 1):
-               if (self.turnType == 3):
-                  self.turnType = 0
-               else:
-                  self.turnType += 1
-         if (self.turnType == 2):
+         elif (self.turnType == 2):
             if not (self.can_be_moved("left", grid)):
                self.didUpdate = 0
-            if(self.didUpdate == 1):
-               if (self.turnType == 3):
-                  self.turnType = 0
-               else:
-                  self.turnType += 1
+         else:
+            self.didUpdate = 1
+
+      if self.type == 'S':
+         if (self.turnType == 3):
+            if not (self.can_be_moved("right", grid)):
+               self.didUpdate = 0
+         elif (self.turnType == 1):
+            if not (self.can_be_moved("left", grid)):
+               self.didUpdate = 0
+         else:
+            self.didUpdate = 1
+
+
+
+
+   def turn(self, key_typed, grid):
+      self.can_be_turned(grid)
+      if(self.didUpdate == 1):
+         if (self.turnType == 3):
+            self.turnType = 0
+         else:
+            self.turnType += 1
+      if self.type == 'O':
+         return False
+      if self.type == 'Z':
          print("asdasdasdasd")
          occupied_tiles = []
          n = 3  # n = number of rows = number of columns in the tile matrix
          if (self.turnType == 0):
             if not (self.can_be_moved("right", grid)):
+               self.didUpdate = 0
                return False
             occupied_tiles.append((0, 0))  # (column_index, row_index)
             occupied_tiles.append((1, 0))
@@ -460,8 +520,8 @@ class Tetromino:
             occupied_tiles.append((2, 0))
          if (self.turnType == 2):
             if not (self.can_be_moved("left", grid)):
+               self.didUpdate = 0
                return False
-
             print("turntype 2")
             occupied_tiles.append((0, 1))
             occupied_tiles.append((1, 1))
@@ -479,6 +539,7 @@ class Tetromino:
          n = 3  # n = number of rows = number of columns in the tile matrix
          if (self.turnType == 0):
             if not (self.can_be_moved("right", grid)):
+               self.didUpdate = 0
                return False
             occupied_tiles.append((0, 1))  # (column_index, row_index)
             occupied_tiles.append((1, 0))
@@ -492,6 +553,7 @@ class Tetromino:
             occupied_tiles.append((2, 2))
          if (self.turnType == 2):
             if not (self.can_be_moved("left", grid)):
+               self.didUpdate = 0
                return False
             print("turntype 2")
             occupied_tiles.append((0, 2))
@@ -514,7 +576,8 @@ class Tetromino:
             occupied_tiles.append((1, 1))
             occupied_tiles.append((1, 2))
          if (self.turnType == 1):
-            if not (self.can_be_moved("left", grid)):
+            if not (self.can_be_moved("right", grid)):
+               self.didUpdate = 0
                return False
             print("turntype 1")
             occupied_tiles.append((0, 0))
@@ -528,7 +591,8 @@ class Tetromino:
             occupied_tiles.append((1, 2))
             occupied_tiles.append((2, 0))
          if (self.turnType == 3):
-            if not (self.can_be_moved("right", grid)):
+            if not (self.can_be_moved("left", grid)):
+               self.didUpdate = 0
                return False
             print("turntype 3")
             occupied_tiles.append((0, 1))
@@ -547,6 +611,7 @@ class Tetromino:
             occupied_tiles.append((2, 2))
          if (self.turnType == 1):
             if not (self.can_be_moved("left", grid)):
+               self.didUpdate = 0
                return False
             print("turntype 1")
             occupied_tiles.append((0, 1))
@@ -561,6 +626,7 @@ class Tetromino:
             occupied_tiles.append((1, 2))
          if (self.turnType == 3):
             if not (self.can_be_moved("right", grid)):
+               self.didUpdate = 0
                return False
             print("turntype 3")
             occupied_tiles.append((0, 1))
@@ -578,6 +644,7 @@ class Tetromino:
             occupied_tiles.append((1, 3))
          if (self.turnType == 1):
             if not (self.can_be_moved("left", grid)):
+               self.didUpdate = 0
                return False
             print("turntype 1")
             occupied_tiles.append((0, 1))
@@ -592,6 +659,7 @@ class Tetromino:
             occupied_tiles.append((2, 3))
          if (self.turnType == 3):
             if not (self.can_be_moved("right", grid)):
+               self.didUpdate = 0
                return False
             print("turntype 3")
             occupied_tiles.append((0, 2))
@@ -604,6 +672,7 @@ class Tetromino:
          n = 3  # n = number of rows = number of columns in the tile matrix
          if (self.turnType == 0):
             if not (self.can_be_moved("left", grid)):
+               self.didUpdate = 0
                return False
             occupied_tiles.append((0, 1))  # (column_index, row_index)
             occupied_tiles.append((1, 1))
@@ -617,6 +686,7 @@ class Tetromino:
             occupied_tiles.append((0, 1))
          if (self.turnType == 2):
             if not (self.can_be_moved("right", grid)):
+               self.didUpdate = 0
                return False
             print("turntype 2")
             occupied_tiles.append((0, 1))
