@@ -38,6 +38,7 @@ class GameGrid:
       # draw a box around the game grid 
       self.draw_boundaries()
       # show the resulting drawing with a pause duration = 250 ms
+      stddraw.rectangle(12.5,1.5,4,4)
       stddraw.show(250)
          
    # Method for drawing the cells and the lines of the game grid
