@@ -14,6 +14,7 @@ class Tetromino:
    def __init__(self, type):
       # set the shape of the tetromino based on the given type
       self.type = type
+      self.didUpdate = 1
       self.turnType = 0
       # determine the occupied (non-empty) tiles in the tile matrix
       occupied_tiles = []
@@ -27,10 +28,10 @@ class Tetromino:
       elif type == 'O':
          n = 2  # n = number of rows = number of columns in the tile matrix
          # shape of the tetromino O in its initial orientation
-         occupied_tiles.append((0, 0)) # (column_index, row_index) 
+         occupied_tiles.append((0, 0)) # (column_index, row_index)
          occupied_tiles.append((1, 0))
          occupied_tiles.append((0, 1))
-         occupied_tiles.append((1, 1)) 
+         occupied_tiles.append((1, 1))
       elif type == 'Z':
          n = 3  # n = number of rows = number of columns in the tile matrix
          # shape of the tetromino Z in its initial orientation
@@ -218,12 +219,13 @@ class Tetromino:
          self.turnType = 3
       else:
          self.turnType -= 1
-
-      if self.type == 'Z':
+      if self.type == 'Z':#done
          print("asdasdasdasd")
          occupied_tiles = []
          n = 3  # n = number of rows = number of columns in the tile matrix
          if (self.turnType == 0):
+            if not (self.can_be_moved("left", grid)):
+               return False
             occupied_tiles.append((0, 0))  # (column_index, row_index)
             occupied_tiles.append((1, 0))
             occupied_tiles.append((1, 1))
@@ -235,6 +237,8 @@ class Tetromino:
             occupied_tiles.append((2, 1))
             occupied_tiles.append((2, 0))
          if (self.turnType == 2):
+            if not (self.can_be_moved("right", grid)):
+               return False
             print("turntype 2")
             occupied_tiles.append((0, 1))
             occupied_tiles.append((1, 1))
@@ -246,20 +250,13 @@ class Tetromino:
             occupied_tiles.append((0, 1))
             occupied_tiles.append((1, 1))
             occupied_tiles.append((1, 0))
-         # create a matrix of numbered tiles based on the shape of the tetromino
-         self.tile_matrix = np.full((n, n), None)
-         # create the four tiles (minos) of the tetromino and place these tiles
-         # into the tile matrix
-         for i in range(len(occupied_tiles)):
-            col_index, row_index = occupied_tiles[i][0], occupied_tiles[i][1]
-            # create the tile at the computed position
-            self.tile_matrix[row_index][col_index] = Tile()
-
-      if self.type == 'S':
+      if self.type == 'S':#done
          print("asdasdasdasd")
          occupied_tiles = []
          n = 3  # n = number of rows = number of columns in the tile matrix
          if (self.turnType == 0):
+            if not (self.can_be_moved("left", grid)):
+               return False
             occupied_tiles.append((0, 1))  # (column_index, row_index)
             occupied_tiles.append((1, 0))
             occupied_tiles.append((1, 1))
@@ -271,6 +268,8 @@ class Tetromino:
             occupied_tiles.append((2, 1))
             occupied_tiles.append((2, 2))
          if (self.turnType == 2):
+            if not (self.can_be_moved("right", grid)):
+               return False
             print("turntype 2")
             occupied_tiles.append((0, 2))
             occupied_tiles.append((1, 2))
@@ -282,16 +281,7 @@ class Tetromino:
             occupied_tiles.append((0, 1))
             occupied_tiles.append((1, 1))
             occupied_tiles.append((1, 2))
-         # create a matrix of numbered tiles based on the shape of the tetromino
-         self.tile_matrix = np.full((n, n), None)
-         # create the four tiles (minos) of the tetromino and place these tiles
-         # into the tile matrix
-         for i in range(len(occupied_tiles)):
-            col_index, row_index = occupied_tiles[i][0], occupied_tiles[i][1]
-            # create the tile at the computed position
-            self.tile_matrix[row_index][col_index] = Tile()
-
-      if self.type == 'J':
+      if self.type == 'J':#done
          print("asdasdasdasd")
          occupied_tiles = []
          n = 3  # n = number of rows = number of columns in the tile matrix
@@ -301,6 +291,8 @@ class Tetromino:
             occupied_tiles.append((1, 1))
             occupied_tiles.append((1, 2))
          if (self.turnType == 1):
+            if not (self.can_be_moved("left", grid)):
+               return False
             print("turntype 1")
             occupied_tiles.append((0, 0))
             occupied_tiles.append((0, 1))
@@ -313,31 +305,26 @@ class Tetromino:
             occupied_tiles.append((1, 2))
             occupied_tiles.append((2, 0))
          if (self.turnType == 3):
+            if not (self.can_be_moved("right", grid)):
+               return False
             print("turntype 3")
             occupied_tiles.append((0, 1))
             occupied_tiles.append((1, 1))
             occupied_tiles.append((2, 1))
             occupied_tiles.append((2, 2))
-
-         # create a matrix of numbered tiles based on the shape of the tetromino
-         self.tile_matrix = np.full((n, n), None)
-         # create the four tiles (minos) of the tetromino and place these tiles
-         # into the tile matrix
-         for i in range(len(occupied_tiles)):
-            col_index, row_index = occupied_tiles[i][0], occupied_tiles[i][1]
-            # create the tile at the computed position
-            self.tile_matrix[row_index][col_index] = Tile()
-
-      if self.type == 'L':
+      if self.type == 'L': #done
          print("asdasdasdasd")
          occupied_tiles = []
          n = 3  # n = number of rows = number of columns in the tile matrix
          if (self.turnType == 0):
+            print("turntype 0")
             occupied_tiles.append((1, 0))  # (column_index, row_index)
             occupied_tiles.append((1, 1))
             occupied_tiles.append((1, 2))
             occupied_tiles.append((2, 2))
          if (self.turnType == 1):
+            if not (self.can_be_moved("right", grid)):
+               return False
             print("turntype 1")
             occupied_tiles.append((0, 1))
             occupied_tiles.append((0, 2))
@@ -350,22 +337,14 @@ class Tetromino:
             occupied_tiles.append((1, 1))
             occupied_tiles.append((1, 2))
          if (self.turnType == 3):
+            if not (self.can_be_moved("left", grid)):
+               return False
             print("turntype 3")
             occupied_tiles.append((0, 1))
             occupied_tiles.append((1, 1))
             occupied_tiles.append((2, 1))
             occupied_tiles.append((2, 0))
-
-         # create a matrix of numbered tiles based on the shape of the tetromino
-         self.tile_matrix = np.full((n, n), None)
-         # create the four tiles (minos) of the tetromino and place these tiles
-         # into the tile matrix
-         for i in range(len(occupied_tiles)):
-            col_index, row_index = occupied_tiles[i][0], occupied_tiles[i][1]
-            # create the tile at the computed position
-            self.tile_matrix[row_index][col_index] = Tile()
-
-      if self.type == 'I':
+      if self.type == 'I':#done
          print("asdasdasdasd")
          occupied_tiles = []
          n = 4  # n = number of rows = number of columns in the tile matrix
@@ -375,6 +354,8 @@ class Tetromino:
             occupied_tiles.append((1, 2))
             occupied_tiles.append((1, 3))
          if (self.turnType == 1):
+            if not (self.can_be_moved("right", grid)):
+               return False
             print("turntype 1")
             occupied_tiles.append((0, 1))
             occupied_tiles.append((1, 1))
@@ -388,24 +369,19 @@ class Tetromino:
             occupied_tiles.append((2, 3))
          if (self.turnType == 3):
             print("turntype 3")
+            if not (self.can_be_moved("left", grid)):
+               return False
             occupied_tiles.append((0, 2))
             occupied_tiles.append((1, 2))
             occupied_tiles.append((2, 2))
             occupied_tiles.append((3, 2))
-         # create a matrix of numbered tiles based on the shape of the tetromino
-         self.tile_matrix = np.full((n, n), None)
-         # create the four tiles (minos) of the tetromino and place these tiles
-         # into the tile matrix
-         for i in range(len(occupied_tiles)):
-            col_index, row_index = occupied_tiles[i][0], occupied_tiles[i][1]
-            # create the tile at the computed position
-            self.tile_matrix[row_index][col_index] = Tile()
-
       if self.type == 'T':
          print("asdasdasdasd")
          occupied_tiles = []
          n = 3  # n = number of rows = number of columns in the tile matrix
          if (self.turnType == 0):
+            if not (self.can_be_moved("right", grid)):
+               return False
             occupied_tiles.append((0, 1))  # (column_index, row_index)
             occupied_tiles.append((1, 1))
             occupied_tiles.append((1, 2))
@@ -417,40 +393,61 @@ class Tetromino:
             occupied_tiles.append((1, 2))
             occupied_tiles.append((0, 1))
          if (self.turnType == 2):
+            if not (self.can_be_moved("left", grid)):
+               return False
             print("turntype 2")
             occupied_tiles.append((0, 1))
             occupied_tiles.append((1, 1))
             occupied_tiles.append((2, 1))
             occupied_tiles.append((1, 0))
          if (self.turnType == 3):
+
             print("turntype 3")
             occupied_tiles.append((1, 0))
             occupied_tiles.append((1, 1))
             occupied_tiles.append((1, 2))
             occupied_tiles.append((2, 1))
-         # create a matrix of numbered tiles based on the shape of the tetromino
-         self.tile_matrix = np.full((n, n), None)
-         # create the four tiles (minos) of the tetromino and place these tiles
-         # into the tile matrix
-         for i in range(len(occupied_tiles)):
-            col_index, row_index = occupied_tiles[i][0], occupied_tiles[i][1]
-            # create the tile at the computed position
-            self.tile_matrix[row_index][col_index] = Tile()
+
+      if self.type == 'O':
+         return False
+
+      # create a matrix of numbered tiles based on the shape of the tetromino
+      self.tile_matrix = np.full((n, n), None)
+      # create the four tiles (minos) of the tetromino and place these tiles
+      # into the tile matrix
+      for i in range(len(occupied_tiles)):
+         col_index, row_index = occupied_tiles[i][0], occupied_tiles[i][1]
+         # create the tile at the computed position
+         self.tile_matrix[row_index][col_index] = Tile()
+
+
       return
 
 
-
    def turn(self, key_typed, grid):
-      if (self.turnType == 3):
-         self.turnType = 0
-      else:
-         self.turnType += 1
-
       if self.type == 'Z':
+         if (self.turnType == 0):
+            if not (self.can_be_moved("right", grid)):
+               self.didUpdate = 0
+         if(self.didUpdate == 1):
+               if (self.turnType == 3):
+                  self.turnType = 0
+               else:
+                  self.turnType += 1
+         if (self.turnType == 2):
+            if not (self.can_be_moved("left", grid)):
+               self.didUpdate = 0
+            if(self.didUpdate == 1):
+               if (self.turnType == 3):
+                  self.turnType = 0
+               else:
+                  self.turnType += 1
          print("asdasdasdasd")
          occupied_tiles = []
          n = 3  # n = number of rows = number of columns in the tile matrix
          if (self.turnType == 0):
+            if not (self.can_be_moved("right", grid)):
+               return False
             occupied_tiles.append((0, 0))  # (column_index, row_index)
             occupied_tiles.append((1, 0))
             occupied_tiles.append((1, 1))
@@ -462,6 +459,9 @@ class Tetromino:
             occupied_tiles.append((2, 1))
             occupied_tiles.append((2, 0))
          if (self.turnType == 2):
+            if not (self.can_be_moved("left", grid)):
+               return False
+
             print("turntype 2")
             occupied_tiles.append((0, 1))
             occupied_tiles.append((1, 1))
@@ -473,21 +473,13 @@ class Tetromino:
             occupied_tiles.append((0, 1))
             occupied_tiles.append((1, 1))
             occupied_tiles.append((1, 0))
-         # create a matrix of numbered tiles based on the shape of the tetromino
-         self.tile_matrix = np.full((n, n), None)
-         # create the four tiles (minos) of the tetromino and place these tiles
-         # into the tile matrix
-         for i in range(len(occupied_tiles)):
-            col_index, row_index = occupied_tiles[i][0], occupied_tiles[i][1]
-            # create the tile at the computed position
-            self.tile_matrix[row_index][col_index] = Tile()
-
-
       if self.type == 'S':
          print("asdasdasdasd")
          occupied_tiles = []
          n = 3  # n = number of rows = number of columns in the tile matrix
          if (self.turnType == 0):
+            if not (self.can_be_moved("right", grid)):
+               return False
             occupied_tiles.append((0, 1))  # (column_index, row_index)
             occupied_tiles.append((1, 0))
             occupied_tiles.append((1, 1))
@@ -499,6 +491,8 @@ class Tetromino:
             occupied_tiles.append((2, 1))
             occupied_tiles.append((2, 2))
          if (self.turnType == 2):
+            if not (self.can_be_moved("left", grid)):
+               return False
             print("turntype 2")
             occupied_tiles.append((0, 2))
             occupied_tiles.append((1, 2))
@@ -510,16 +504,6 @@ class Tetromino:
             occupied_tiles.append((0, 1))
             occupied_tiles.append((1, 1))
             occupied_tiles.append((1, 2))
-         # create a matrix of numbered tiles based on the shape of the tetromino
-         self.tile_matrix = np.full((n, n), None)
-         # create the four tiles (minos) of the tetromino and place these tiles
-         # into the tile matrix
-         for i in range(len(occupied_tiles)):
-            col_index, row_index = occupied_tiles[i][0], occupied_tiles[i][1]
-            # create the tile at the computed position
-            self.tile_matrix[row_index][col_index] = Tile()
-
-
       if self.type == 'J':
          print("asdasdasdasd")
          occupied_tiles = []
@@ -530,6 +514,8 @@ class Tetromino:
             occupied_tiles.append((1, 1))
             occupied_tiles.append((1, 2))
          if (self.turnType == 1):
+            if not (self.can_be_moved("left", grid)):
+               return False
             print("turntype 1")
             occupied_tiles.append((0, 0))
             occupied_tiles.append((0, 1))
@@ -542,33 +528,26 @@ class Tetromino:
             occupied_tiles.append((1, 2))
             occupied_tiles.append((2, 0))
          if (self.turnType == 3):
+            if not (self.can_be_moved("right", grid)):
+               return False
             print("turntype 3")
             occupied_tiles.append((0, 1))
             occupied_tiles.append((1, 1))
             occupied_tiles.append((2, 1))
             occupied_tiles.append((2, 2))
-
-         # create a matrix of numbered tiles based on the shape of the tetromino
-         self.tile_matrix = np.full((n, n), None)
-         # create the four tiles (minos) of the tetromino and place these tiles
-         # into the tile matrix
-         for i in range(len(occupied_tiles)):
-            col_index, row_index = occupied_tiles[i][0], occupied_tiles[i][1]
-            # create the tile at the computed position
-            self.tile_matrix[row_index][col_index] = Tile()
-
-
-
       if self.type == 'L':
          print("asdasdasdasd")
          occupied_tiles = []
          n = 3  # n = number of rows = number of columns in the tile matrix
          if (self.turnType == 0):
+            print("turntype 0")
             occupied_tiles.append((1, 0))  # (column_index, row_index)
             occupied_tiles.append((1, 1))
             occupied_tiles.append((1, 2))
             occupied_tiles.append((2, 2))
          if (self.turnType == 1):
+            if not (self.can_be_moved("left", grid)):
+               return False
             print("turntype 1")
             occupied_tiles.append((0, 1))
             occupied_tiles.append((0, 2))
@@ -581,23 +560,13 @@ class Tetromino:
             occupied_tiles.append((1, 1))
             occupied_tiles.append((1, 2))
          if (self.turnType == 3):
+            if not (self.can_be_moved("right", grid)):
+               return False
             print("turntype 3")
             occupied_tiles.append((0, 1))
             occupied_tiles.append((1, 1))
             occupied_tiles.append((2, 1))
             occupied_tiles.append((2, 0))
-
-         # create a matrix of numbered tiles based on the shape of the tetromino
-         self.tile_matrix = np.full((n, n), None)
-         # create the four tiles (minos) of the tetromino and place these tiles
-         # into the tile matrix
-         for i in range(len(occupied_tiles)):
-            col_index, row_index = occupied_tiles[i][0], occupied_tiles[i][1]
-            # create the tile at the computed position
-            self.tile_matrix[row_index][col_index] = Tile()
-
-
-
       if self.type == 'I':
          print("asdasdasdasd")
          occupied_tiles = []
@@ -608,6 +577,8 @@ class Tetromino:
             occupied_tiles.append((1, 2))
             occupied_tiles.append((1, 3))
          if (self.turnType == 1):
+            if not (self.can_be_moved("left", grid)):
+               return False
             print("turntype 1")
             occupied_tiles.append((0, 1))
             occupied_tiles.append((1, 1))
@@ -620,28 +591,20 @@ class Tetromino:
             occupied_tiles.append((2, 2))
             occupied_tiles.append((2, 3))
          if (self.turnType == 3):
+            if not (self.can_be_moved("right", grid)):
+               return False
             print("turntype 3")
             occupied_tiles.append((0, 2))
             occupied_tiles.append((1, 2))
             occupied_tiles.append((2, 2))
             occupied_tiles.append((3, 2))
-         # create a matrix of numbered tiles based on the shape of the tetromino
-         self.tile_matrix = np.full((n, n), None)
-         # create the four tiles (minos) of the tetromino and place these tiles
-         # into the tile matrix
-         for i in range(len(occupied_tiles)):
-            col_index, row_index = occupied_tiles[i][0], occupied_tiles[i][1]
-            # create the tile at the computed position
-            self.tile_matrix[row_index][col_index] = Tile()
-
-
-
-
       if self.type == 'T':
          print("asdasdasdasd")
          occupied_tiles = []
          n = 3  # n = number of rows = number of columns in the tile matrix
          if (self.turnType == 0):
+            if not (self.can_be_moved("left", grid)):
+               return False
             occupied_tiles.append((0, 1))  # (column_index, row_index)
             occupied_tiles.append((1, 1))
             occupied_tiles.append((1, 2))
@@ -653,6 +616,8 @@ class Tetromino:
             occupied_tiles.append((1, 2))
             occupied_tiles.append((0, 1))
          if (self.turnType == 2):
+            if not (self.can_be_moved("right", grid)):
+               return False
             print("turntype 2")
             occupied_tiles.append((0, 1))
             occupied_tiles.append((1, 1))
@@ -664,12 +629,13 @@ class Tetromino:
             occupied_tiles.append((1, 1))
             occupied_tiles.append((1, 2))
             occupied_tiles.append((2, 1))
-         # create a matrix of numbered tiles based on the shape of the tetromino
-         self.tile_matrix = np.full((n, n), None)
-         # create the four tiles (minos) of the tetromino and place these tiles
-         # into the tile matrix
-         for i in range(len(occupied_tiles)):
-            col_index, row_index = occupied_tiles[i][0], occupied_tiles[i][1]
-            # create the tile at the computed position
-            self.tile_matrix[row_index][col_index] = Tile()
+      # create a matrix of numbered tiles based on the shape of the tetromino
+      self.tile_matrix = np.full((n, n), None)
+      # create the four tiles (minos) of the tetromino and place these tiles
+      # into the tile matrix
+      for i in range(len(occupied_tiles)):
+         col_index, row_index = occupied_tiles[i][0], occupied_tiles[i][1]
+         # create the tile at the computed position
+         self.tile_matrix[row_index][col_index] = Tile()
+
       return
