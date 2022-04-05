@@ -214,7 +214,11 @@ class Tetromino:
                   break  # end the inner for loop
       return True  # tetromino can be moved in the given direction
 
-   def reverse_turn(self, key_typed, grid):
+
+
+
+
+   """ def reverse_turn(self, key_typed, grid):
       if (self.turnType == 0):
          self.turnType = 3
       else:
@@ -422,71 +426,73 @@ class Tetromino:
 
 
       return
-
+"""
 
    def can_be_turned(self,grid):
+      if not (self.can_be_moved("down", grid)):
+         self.type = 0
 
-      if self.type == 'O':
-         return False
+         if self.type == 'O':
+            return False
 
-      if self.type == 'Z':
-         if (self.turnType == 3):
-            if not (self.can_be_moved("right", grid)):
-               self.didUpdate = 0
-         elif (self.turnType == 1):
-            if not (self.can_be_moved("left", grid)):
-               self.didUpdate = 0
-         else:
-            self.didUpdate = 1
-      if self.type == 'T':
-         if (self.turnType == 3):
-            if not (self.can_be_moved("left", grid)):
-               self.didUpdate = 0
-         elif (self.turnType == 1):
-            if not (self.can_be_moved("right", grid)):
-               self.didUpdate = 0
-         else:
-            self.didUpdate = 1
+         if self.type == 'Z':
+            if (self.turnType == 3):
+               if not (self.can_be_moved("right", grid)):
+                  self.didUpdate = 0
+            elif (self.turnType == 1):
+               if not (self.can_be_moved("left", grid)):
+                  self.didUpdate = 0
+            else:
+               self.didUpdate = 1
+         if self.type == 'T':
+            if (self.turnType == 3):
+               if not (self.can_be_moved("left", grid)):
+                  self.didUpdate = 0
+            elif (self.turnType == 1):
+               if not (self.can_be_moved("right", grid)):
+                  self.didUpdate = 0
+            else:
+               self.didUpdate = 1
 
-      if self.type == 'I':
-         if (self.turnType == 0):
-            if not (self.can_be_moved("left", grid)):
-               self.didUpdate = 0
-         elif (self.turnType == 2):
-            if not (self.can_be_moved("right", grid)):
-               self.didUpdate = 0
-         else:
-            self.didUpdate = 1
+         if self.type == 'I':
+            if (self.turnType == 0):
+               if not (self.can_be_moved("left", grid)):
+                  self.didUpdate = 0
+            elif (self.turnType == 2):
+               if not (self.can_be_moved("right", grid)):
+                  self.didUpdate = 0
+            else:
+               self.didUpdate = 1
 
-      if self.type == 'L':
-         if (self.turnType == 0):
-            if not (self.can_be_moved("left", grid)):
-               self.didUpdate = 0
-         elif (self.turnType == 2):
-            if not (self.can_be_moved("right", grid)):
-               self.didUpdate = 0
-         else:
-            self.didUpdate = 1
+         if self.type == 'L':
+            if (self.turnType == 0):
+               if not (self.can_be_moved("left", grid)):
+                  self.didUpdate = 0
+            elif (self.turnType == 2):
+               if not (self.can_be_moved("right", grid)):
+                  self.didUpdate = 0
+            else:
+               self.didUpdate = 1
 
-      if self.type == 'J':
-         if (self.turnType == 0):
-            if not (self.can_be_moved("right", grid)):
-               self.didUpdate = 0
-         elif (self.turnType == 2):
-            if not (self.can_be_moved("left", grid)):
-               self.didUpdate = 0
-         else:
-            self.didUpdate = 1
+         if self.type == 'J':
+            if (self.turnType == 0):
+               if not (self.can_be_moved("right", grid)):
+                  self.didUpdate = 0
+            elif (self.turnType == 2):
+               if not (self.can_be_moved("left", grid)):
+                  self.didUpdate = 0
+            else:
+               self.didUpdate = 1
 
-      if self.type == 'S':
-         if (self.turnType == 3):
-            if not (self.can_be_moved("right", grid)):
-               self.didUpdate = 0
-         elif (self.turnType == 1):
-            if not (self.can_be_moved("left", grid)):
-               self.didUpdate = 0
-         else:
-            self.didUpdate = 1
+         if self.type == 'S':
+            if (self.turnType == 3):
+               if not (self.can_be_moved("right", grid)):
+                  self.didUpdate = 0
+            elif (self.turnType == 1):
+               if not (self.can_be_moved("left", grid)):
+                  self.didUpdate = 0
+            else:
+               self.didUpdate = 1
 
 
 
