@@ -9,6 +9,7 @@ import random # used for creating tetrominoes with random types/shapes
 # MAIN FUNCTION OF THE PROGRAM
 #-------------------------------------------------------------------------------
 # Main function where this program starts execution
+
 def start():
    count = 0;
    # set the dimensions of the game grid
@@ -71,6 +72,9 @@ def start():
 
       # move the active tetromino down by one at each iteration (auto fall)
       success = current_tetromino.move("down", grid)
+
+      grid.checkColumns(grid.tile_matrix)
+
 
       # Check rows from bottom up, if you find a row without empty space
       # delete the tiles, move all rows above the deleted tiles down by 1

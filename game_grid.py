@@ -115,3 +115,20 @@ class GameGrid:
                   self.game_over = True
       # return the game_over flag
       return self.game_over
+
+   def checkColumns(self, tile_matrix):
+      for column in tile_matrix.T: # transpose matrix to iterate trough columns
+         for tileIndex, tile in enumerate(column): # go trough each tile that is occupied
+            if not (tile == None or column[tileIndex + 1] == None):
+               if (tileIndex + 1 > 19):
+                  return
+               elif (tile.number == column[tileIndex + 1].number):
+                  tile.number += column[tileIndex + 1].number # Add tile numbers
+                  column[tileIndex + 1] = None # Consume the tile
+                  for x in column: # Move column down by 1
+                     if(tileIndex + 2 > 19):
+                        break
+                     column[tileIndex + 1] = column[tileIndex + 2]
+                     tileIndex += 1
+                  self.checkColumns(tile_matrix) # Check the grid again
+                  return
