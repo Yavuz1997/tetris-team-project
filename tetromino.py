@@ -129,13 +129,13 @@ class Tetromino:
    # Method for drawing the tetromino on the game grid
    def draw(self):
       n = len(self.tile_matrix)  # n = number of rows = number of columns
+
       for row in range(n):
          for col in range(n):
             # draw each occupied tile (not equal to None) on the game grid
             if self.tile_matrix[row][col] is not None:
                # get the position of the tile
                position = self.get_cell_position(row, col)
-               print(position)
                # draw only the tiles that are inside the game grid
                if position.y < self.grid_height:
                   self.tile_matrix[row][col].draw(position)
@@ -429,13 +429,10 @@ class Tetromino:
 """
 
    def can_be_turned(self,grid):
-      if not (self.bottom_left_cell.y < 19):
-         if not (self.can_be_moved("down", grid)):
-            self.type = 0
-
+      if (self.bottom_left_cell.y < 19):
+         if (self.can_be_moved("down", grid)):
             if self.type == 'O':
                return False
-
             if self.type == 'Z':
                if (self.turnType == 3):
                   if not (self.can_be_moved("right", grid)):
@@ -494,8 +491,10 @@ class Tetromino:
                      self.didUpdate = 0
                else:
                   self.didUpdate = 1
-
-
+         else:
+            self.didUpdate = 0
+      else:
+         self.didUpdate = 0
 
 
    def turn(self, key_typed, grid):
