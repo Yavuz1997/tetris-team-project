@@ -17,13 +17,13 @@ class GameGrid:
       # the game_over flag shows whether the game is over or not
       self.game_over = False
       # set the color used for the empty grid cells
-      self.empty_cell_color = Color(42, 69, 99)
+      self.empty_cell_color = Color(206,192,181)
       # set the colors used for the grid lines and the grid boundaries
-      self.line_color = Color(0, 100, 200) 
-      self.boundary_color = Color(0, 100, 200)
+      self.line_color = Color(140,132,124)
+      self.boundary_color = Color(140,132,124)
       # thickness values used for the grid lines and the boundaries
       self.line_thickness = 0.002
-      self.box_thickness = 10 * self.line_thickness
+      self.box_thickness = 5 * self.line_thickness
 
    # Method used for displaying the game grid
    def display(self):
@@ -124,6 +124,24 @@ class GameGrid:
                   return
                elif (tile.number == column[tileIndex + 1].number):
                   tile.number += column[tileIndex + 1].number # Add tile numbers
+                  if(tile.number == 8):
+                     tile.background_color = Color(242, 177, 121)
+                  elif(tile.number == 16):
+                     tile.background_color = Color(245, 149, 99)
+                  elif(tile.number == 32):
+                     tile.background_color = Color(246, 124, 95)
+                  elif(tile.number == 64):
+                     tile.background_color = Color(246, 94, 59)
+                  elif(tile.number == 128):
+                     tile.background_color = Color(237, 207, 114)
+                  elif(tile.number == 256):
+                     tile.background_color = Color(237, 204, 97)
+                  elif(tile.number == 512):
+                     tile.background_color = Color(237, 200, 80)
+                  elif(tile.number == 1024):
+                     tile.background_color = Color(237, 197, 63)
+                  elif(tile.number > 1024):
+                     tile.background_color = Color(237, 194, 46)
                   column[tileIndex + 1] = None # Consume the tile
                   for x in column: # Move column down by 1
                      if(tileIndex + 2 > 19):

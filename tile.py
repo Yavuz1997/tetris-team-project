@@ -18,9 +18,12 @@ class Tile:
       # set the number on the tile
       self.number = randomNums[random_num_index]
       # set the colors of the tile
-      self.background_color = Color(151, 178, 199) # background (tile) color
+      if(self.number == 2):
+         self.background_color = Color(238, 238, 218) # background (tile) color
+      elif(self.number == 4):
+         self.background_color = Color(237, 224, 200)  # background (tile) color
       self.foreground_color = Color(0, 100, 200) # foreground (number) color
-      self.box_color = Color(0, 100, 200) # box (boundary) color
+      self.box_color = Color(140,132,124) # box (boundary) color
 
    # Method for drawing the tile
    def draw(self, position, length = 1):
