@@ -11,7 +11,6 @@ import random # used for creating tetrominoes with random types/shapes
 # Main function where this program starts execution
 
 def start():
-   count = 0;
    # set the dimensions of the game grid
    grid_h, grid_w = 20, 18
    # set the size of the drawing canvas
@@ -35,9 +34,12 @@ def start():
    # display a simple menu before opening the game
    # by using the display_game_menu function defined below
    display_game_menu(grid_h, grid_w)
-   
+   has_next= 0
    # the main game loop (keyboard interaction for moving the tetromino) 
    while True:
+      if(has_next == 0):
+         next_tetromino = create_tetromino(grid_h, grid_w - 6)
+         has_next += 1
       # check user interactions via the keyboard
       if stddraw.hasNextKeyTyped():  # check if the user has pressed a key
          key_typed = stddraw.nextKeyTyped()  # the most recently pressed key
@@ -100,14 +102,14 @@ def start():
             break
          # create the next tetromino to enter the game grid
          # by using the create_tetromino function defined below
-         current_tetromino = create_tetromino(grid_h, grid_w - 6)
+         current_tetromino = Tetromino(next_tetromino.type)
+         current_tetromino.tile_matrix = next_tetromino.tile_matrix
+         has_next -= 1
          grid.current_tetromino = current_tetromino
 
       # display the game grid and the current tetromino
+      grid.display(next_tetromino)
 
-      grid.display()
-
-      count+= 1;
 
    # print a message on the console when the game is over
    print("Game over")

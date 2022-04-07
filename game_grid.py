@@ -26,11 +26,14 @@ class GameGrid:
       self.box_thickness = 5 * self.line_thickness
 
    # Method used for displaying the game grid
-   def display(self):
+   def display(self, next_tetromino):
       # clear the background to empty_cell_color
       stddraw.clear(self.empty_cell_color)
       # draw the game grid
       self.draw_grid()
+      next_tetromino.bottom_left_cell.x = 13
+      next_tetromino.bottom_left_cell.y = 2.5
+      next_tetromino.draw()
       # draw the current/active tetromino if it is not None (the case when the 
       # game grid is updated)
       if self.current_tetromino is not None:
@@ -38,7 +41,6 @@ class GameGrid:
       # draw a box around the game grid 
       self.draw_boundaries()
       # show the resulting drawing with a pause duration = 250 ms
-      stddraw.rectangle(12.5,1.5,4,4)
       stddraw.show(250)
          
    # Method for drawing the cells and the lines of the game grid
