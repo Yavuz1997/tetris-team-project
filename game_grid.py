@@ -31,7 +31,10 @@ class GameGrid:
       stddraw.clear(self.empty_cell_color)
       # draw the game grid
       self.draw_grid()
-      next_tetromino.bottom_left_cell.x = 13
+      stddraw.setPenColor(Color(245,149,99))
+      stddraw.setFontSize(25)
+      stddraw.boldText(14.5,7,"Next Piece :")
+      next_tetromino.bottom_left_cell.x = 13.5
       next_tetromino.bottom_left_cell.y = 2.5
       next_tetromino.draw()
       # draw the current/active tetromino if it is not None (the case when the 
@@ -123,6 +126,8 @@ class GameGrid:
    def checkColumns(self, tile_matrix):
       for column in tile_matrix.T: # transpose matrix to iterate trough columns
          for tileIndex, tile in enumerate(column): # go trough each tile that is occupied
+            if (tileIndex+1 > 19):
+               return
             if not (tile == None or column[tileIndex + 1] == None):
                if (tileIndex + 1 > 19):
                   return
