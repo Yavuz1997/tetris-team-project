@@ -38,7 +38,10 @@ class GameGrid:
       stddraw.setPenColor(Color(255,215,0))
       stddraw.boldText(14.5, 18, str(score))
       next_tetromino.bottom_left_cell.x = 13.5
-      next_tetromino.bottom_left_cell.y = 2.5
+      if not(next_tetromino.type == 'I'):
+         next_tetromino.bottom_left_cell.y = 3.5
+      else:
+         next_tetromino.bottom_left_cell.y = 2.5
       next_tetromino.draw()
       # draw the current/active tetromino if it is not None (the case when the 
       # game grid is updated)
