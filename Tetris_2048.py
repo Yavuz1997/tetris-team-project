@@ -34,7 +34,8 @@ def start():
    # display a simple menu before opening the game
    # by using the display_game_menu function defined below
    display_game_menu(grid_h, grid_w)
-   has_next= 0
+   has_next = 0
+   score = 0
    # the main game loop (keyboard interaction for moving the tetromino) 
    while True:
       if(has_next == 0):
@@ -75,8 +76,8 @@ def start():
       # move the active tetromino down by one at each iteration (auto fall)
       success = current_tetromino.move("down", grid)
 
-      grid.checkColumns(grid.tile_matrix) # add same tiles, move columns, change colors
-      grid.checkRows(grid.tile_matrix) # remove filled rows, move rows down
+      score = grid.checkColumns(grid.tile_matrix, score) # add same tiles, move columns, change colors
+      score = grid.checkRows(grid.tile_matrix, score) # remove filled rows, move rows down
 
       # place the active tetromino on the grid when it cannot go down anymore
       if not success:

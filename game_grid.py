@@ -123,15 +123,15 @@ class GameGrid:
 
    # Method method that checks columns and adds same numbers, moves the rows when theres a summation
    # and changes tile colors with the summation
-   def checkColumns(self, tile_matrix):
+   def checkColumns(self, tile_matrix, score):
       for column in tile_matrix.T: # transpose matrix to iterate trough columns
          for tileIndex, tile in enumerate(column): # go trough each tile that is occupied
             if (tileIndex+1 > 19):
                continue
             if not (tile == None or column[tileIndex + 1] == None):
-               if (tileIndex + 1 > 19):
-                  return
-               elif (tile.number == column[tileIndex + 1].number):
+               if (tile.number == column[tileIndex + 1].number):
+                  score += tile.number
+                  score += column[tileIndex + 1].number
                   tile.number += column[tileIndex + 1].number # Add tile numbers
                   if(tile.number == 8):   # Change tile colours with the values
                      tile.background_color = Color(242, 177, 121)
@@ -157,19 +157,21 @@ class GameGrid:
                         break
                      column[tileIndex + 1] = column[tileIndex + 2]
                      tileIndex += 1
-                  self.checkColumns(tile_matrix) # Check the grid again
-                  return
+                  score = self.checkColumns(tile_matrix, score) # Check the grid again
+                  return score
+      return score
 
    # Method that checks rows from bottom up, if it finds a row without empty space
    # delete the tiles, move all rows above the deleted tiles down by 1
-   def checkRows(self, tile_matrix):
+   def checkRows(self, tile_matrix, score):
       for rowIndex, row in enumerate(tile_matrix):
          if None not in row:
             for columnIndex, val in enumerate(row):
+               score += val.number
                row[columnIndex] = None
             for j, x in enumerate(tile_matrix):
                j += rowIndex
                if (j == 18):
                   break
                tile_matrix[j] = tile_matrix[j + 1]
-      return
+      return score
