@@ -26,7 +26,7 @@ class GameGrid:
       self.box_thickness = 5 * self.line_thickness
 
    # Method used for displaying the game grid
-   def display(self, next_tetromino):
+   def display(self, next_tetromino,score):
       # clear the background to empty_cell_color
       stddraw.clear(self.empty_cell_color)
       # draw the game grid
@@ -34,6 +34,9 @@ class GameGrid:
       stddraw.setPenColor(Color(245,149,99))
       stddraw.setFontSize(25)
       stddraw.boldText(14.5,7,"Next Piece :")
+      stddraw.boldText(12.6, 18, "Score :")
+      stddraw.setPenColor(Color(255,215,0))
+      stddraw.boldText(14.5, 18, str(score))
       next_tetromino.bottom_left_cell.x = 13.5
       next_tetromino.bottom_left_cell.y = 2.5
       next_tetromino.draw()

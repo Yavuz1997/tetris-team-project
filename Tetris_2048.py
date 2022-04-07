@@ -97,7 +97,7 @@ def start():
          grid.current_tetromino = current_tetromino
 
       # display the game grid and the current tetromino
-      grid.display(next_tetromino)
+      grid.display(next_tetromino,score)
 
 
    # print a message on the console when the game is over
