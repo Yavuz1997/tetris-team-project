@@ -127,7 +127,7 @@ class GameGrid:
       for column in tile_matrix.T: # transpose matrix to iterate trough columns
          for tileIndex, tile in enumerate(column): # go trough each tile that is occupied
             if (tileIndex+1 > 19):
-               return
+               continue
             if not (tile == None or column[tileIndex + 1] == None):
                if (tileIndex + 1 > 19):
                   return
