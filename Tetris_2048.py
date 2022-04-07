@@ -75,20 +75,8 @@ def start():
       # move the active tetromino down by one at each iteration (auto fall)
       success = current_tetromino.move("down", grid)
 
-      grid.checkColumns(grid.tile_matrix)
-
-
-      # Check rows from bottom up, if you find a row without empty space
-      # delete the tiles, move all rows above the deleted tiles down by 1
-      for rowIndex, row in enumerate(grid.tile_matrix):
-         if None not in row:
-            for columnIndex, val in enumerate(row):
-               row[columnIndex] = None
-            for j, x in enumerate(grid.tile_matrix):
-               j += rowIndex
-               if (j == 18):
-                  break
-               grid.tile_matrix[j] = grid.tile_matrix[j + 1]
+      grid.checkColumns(grid.tile_matrix) # add same tiles, move columns, change colors
+      grid.checkRows(grid.tile_matrix) # remove filled rows, move rows down
 
       # place the active tetromino on the grid when it cannot go down anymore
       if not success:
