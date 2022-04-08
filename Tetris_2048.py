@@ -1,3 +1,5 @@
+import sys
+
 import lib.stddraw as stddraw  # stddraw is used as a basic graphics library
 from lib.picture import Picture  # used for displaying images
 from lib.color import Color  # used for coloring the game menu
@@ -206,6 +208,7 @@ def display_game_over(score):
 # start() function is specified as the entry point (main function) from which
 # the program starts execution
 if __name__== '__main__':
+   sys.setrecursionlimit(2000)
    while True:
        score = start()
        display_game_over(score)
