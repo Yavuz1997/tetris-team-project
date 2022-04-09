@@ -7,7 +7,6 @@ import os  # the os module is used for file and directory operations
 from game_grid import GameGrid # the class for modeling the game grid
 from tetromino import Tetromino # the class for modeling the tetrominoes
 import random # used for creating tetrominoes with random types/shapes
-
 # MAIN FUNCTION OF THE PROGRAM
 #-------------------------------------------------------------------------------
 # Main function where this program starts execution
@@ -66,11 +65,9 @@ def start():
 
          elif key_typed == "r":
             #rotate the active tetromino in clockwise
-            current_tetromino.turn(key_typed, grid)
+            current_tetromino.turn(grid)
 
-         elif key_typed == "t":
-            #rotate the active tetromino in counter-clockwise
-            current_tetromino.reverse_turn(key_typed, grid)
+
 
          # clear the queue of the pressed keys for a smoother interaction
          stddraw.clearKeysTyped()

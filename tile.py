@@ -1,6 +1,8 @@
 import lib.stddraw as stddraw  # stddraw is used as a basic graphics library
+
 from lib.color import Color  # used for coloring the tile and the number on it
 import random
+
 
 # Class used for modeling numbered tiles as in 2048
 class Tile: 
@@ -13,6 +15,7 @@ class Tile:
 
    # Constructor that creates a tile with 2 as the number on it
    def __init__(self):
+
       randomNums = [2, 4]
       random_num_index = random.randint(0, len(randomNums) - 1)
       # set the number on the tile
@@ -40,3 +43,7 @@ class Tile:
       stddraw.setFontFamily(Tile.font_family)
       stddraw.setFontSize(Tile.font_size)
       stddraw.text(position.x, position.y, str(self.number))
+
+
+
+
