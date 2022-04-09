@@ -70,9 +70,7 @@ def start():
                for col in row:
                   if not (col == None):
                      nums.append(col.number)
-            print(current_tetromino.tile_matrix)
             current_tetromino.turn(grid)
-            print(nums)
             counter = 0
             for row in current_tetromino.tile_matrix:
                for col in row:
@@ -93,6 +91,27 @@ def start():
       success = current_tetromino.move("down", grid)
 
       score = grid.checkColumns(grid.tile_matrix, score) # add same tiles, move columns, change colors
+      # grid.tile_matrix[rowIndex-1][colIndex] # under the tile
+      # grid.tile_matrix[rowIndex][colIndex+1] # right side of tile
+      # grid.tile_matrix[rowIndex+1][colIndex] # upper side of tile
+      for rowIndex, row in enumerate(grid.tile_matrix):
+         if( rowIndex == 0):
+            continue
+         for colIndex, col in enumerate(row):
+            if not ( col == None):
+               if(colIndex == 0): #Leftmost side
+                  if(grid.tile_matrix[rowIndex-1][colIndex] == None and grid.tile_matrix[rowIndex][colIndex+1] == None):
+                     score += col.number
+                     grid.tile_matrix[rowIndex][colIndex] = None
+               elif(colIndex == 11): #Rightmost side
+                  if (grid.tile_matrix[rowIndex - 1][colIndex] == None and grid.tile_matrix[rowIndex][colIndex - 1] == None):
+                     score += col.number
+                     grid.tile_matrix[rowIndex][colIndex] = None
+               else:
+                  if (grid.tile_matrix[rowIndex - 1][colIndex] == None and grid.tile_matrix[rowIndex][colIndex - 1] == None and grid.tile_matrix[rowIndex][colIndex + 1] == None):
+                     score += col.number
+                     grid.tile_matrix[rowIndex][colIndex] = None
+
       score = grid.checkRows(grid.tile_matrix, score) # remove filled rows, move rows down
 
       # place the active tetromino on the grid when it cannot go down anymore
