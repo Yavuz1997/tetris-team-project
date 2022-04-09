@@ -65,7 +65,24 @@ def start():
 
          elif key_typed == "r":
             #rotate the active tetromino in clockwise
+            nums = []
+            for row in current_tetromino.tile_matrix:
+               for col in row:
+                  if not (col == None):
+                     nums.append(col.number)
+            print(current_tetromino.tile_matrix)
             current_tetromino.turn(grid)
+            print(nums)
+            counter = 0
+            for row in current_tetromino.tile_matrix:
+               for col in row:
+                  if not (col == None):
+                     col.number = nums[counter]
+                     if(col.number == 2):
+                        col.background_color = Color(238, 238, 218)
+                     elif (col.number == 4):
+                        col.background_color = Color(237, 224, 200)
+                     counter += 1
 
 
 
