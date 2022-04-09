@@ -463,6 +463,8 @@ class Tetromino:
 
                 if self.type == 'I':
                     if (self.turnType == 0):  # To go from formation 0 to 1
+                        if (self.bottom_left_cell.x + 1 == 10):
+                            self.didUpdate = 0
                         if (game_grid.is_occupied(self.bottom_left_cell.y + 2,
                                                   self.bottom_left_cell.x + 3)):  # checks if concetanates with anything on turned position
                             self.didUpdate = 0
