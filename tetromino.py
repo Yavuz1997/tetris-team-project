@@ -472,6 +472,8 @@ class Tetromino:
                                                                                            game_grid)):  # checks if the left tile is empty if not no turn
                             self.didUpdate = 0
                     elif (self.turnType == 2):  # To go from formation 2 to 3
+                        if (self.bottom_left_cell.x + 1 == 0):
+                            self.didUpdate = 0
                         if (game_grid.is_occupied(self.bottom_left_cell.y + 1,
                                                   self.bottom_left_cell.x)):  # checks if concetanates with anything on turned position
                             self.didUpdate = 0
@@ -483,6 +485,7 @@ class Tetromino:
                         if (game_grid.is_occupied(self.bottom_left_cell.y,
                                                   self.bottom_left_cell.x + 2)):  # checks if concetanates with anything below on turned position
                             self.didUpdate = 0
+
                     else:
                         self.didUpdate = 1
 
@@ -534,7 +537,13 @@ class Tetromino:
             else:
                 self.turnType += 1
         if self.type == 'O':
-            return False
+            occupied_tiles = []
+            n = 3  # n = number of rows = number of columns in the tile matrix
+            occupied_tiles.append((0, 0))  # (column_index, row_index)
+            occupied_tiles.append((1, 0))
+            occupied_tiles.append((1, 1))
+            occupied_tiles.append((0, 1))
+
         if self.type == 'Z':
             print("asdasdasdasd")
             occupied_tiles = []

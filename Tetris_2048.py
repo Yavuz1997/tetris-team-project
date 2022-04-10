@@ -7,6 +7,7 @@ import os  # the os module is used for file and directory operations
 from game_grid import GameGrid # the class for modeling the game grid
 from tetromino import Tetromino # the class for modeling the tetrominoes
 import random # used for creating tetrominoes with random types/shapes
+import numpy as np
 # MAIN FUNCTION OF THE PROGRAM
 #-------------------------------------------------------------------------------
 # Main function where this program starts execution
@@ -63,6 +64,8 @@ def start():
             while(current_tetromino.move(key_typed, grid)):
                current_tetromino.move(key_typed, grid)
 
+
+
          elif key_typed == "r":
             #rotate the active tetromino in clockwise
             nums = []
@@ -71,6 +74,14 @@ def start():
                   if not (col == None):
                      nums.append(col.number)
             current_tetromino.turn(grid)
+
+            if ( current_tetromino.type == "O"):
+               current_tetromino.tile_matrix[0][1].number = nums[0]
+               current_tetromino.tile_matrix[1][0].number = nums[1]
+               current_tetromino.tile_matrix[1][1].number = nums[2]
+               current_tetromino.tile_matrix[0][0].number = nums[3]
+               print("a")
+               print(nums)
             counter = 0
             for row in current_tetromino.tile_matrix:
                for col in row:
@@ -82,8 +93,10 @@ def start():
                         col.background_color = Color(237, 224, 200)
                      counter += 1
 
-
-
+         print(current_tetromino.tile_matrix[0][0].number)
+         print(current_tetromino.tile_matrix[0][1].number)
+         print(current_tetromino.tile_matrix[1][0].number)
+         print(current_tetromino.tile_matrix[1][1].number)
          # clear the queue of the pressed keys for a smoother interaction
          stddraw.clearKeysTyped()
 
@@ -121,7 +134,7 @@ def start():
 # Function for creating random shaped tetrominoes to enter the game grid
 def create_tetromino(grid_height, grid_width):
    # type (shape) of the tetromino is determined randomly
-   tetromino_types = ['Z','I','L','J','O','Z','S','T']
+   tetromino_types = ['O']
    random_index = random.randint(0, len(tetromino_types) - 1)
    random_type = tetromino_types[random_index]
    # create and return the tetromino
