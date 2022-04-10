@@ -97,6 +97,7 @@ def start():
                   for col in row:
                      if not (col == None):
                         nums.append(col.number)
+
                current_tetromino.turn(grid)
                current_tetromino.tile_matrix[0][0].number = nums[2]
                current_tetromino.tile_matrix[0][1].number = nums[0]
