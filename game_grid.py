@@ -31,15 +31,17 @@ class GameGrid:
       stddraw.clear(self.empty_cell_color)
       # draw the game grid
       self.draw_grid()
+      stddraw.setPenColor(Color(242,203,155))
+      stddraw.filledRectangle(11.5,-0.5,6,20)
       stddraw.setPenColor(Color(237, 197, 63))
-      stddraw.filledRectangle(15, 18.5, 2, 1)
+      stddraw.filledRectangle(15, 18.5, 2, 0.85)
       stddraw.setPenColor(Color(245, 149, 99))
       stddraw.setPenColor(Color(245, 149, 99))
       stddraw.setFontSize(25)
       stddraw.boldText(16, 19, "Pause")
       stddraw.boldText(14.5, 7, "Next Piece :")
       stddraw.boldText(12.6, 18, "Score :")
-      stddraw.setPenColor(Color(255, 215, 0))
+      stddraw.setPenColor(Color(246,94,59))
       stddraw.boldText(14.5, 18, str(score))
       next_tetromino.bottom_left_cell.x = 13.5
       if not(next_tetromino.type == 'I'):
