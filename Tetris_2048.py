@@ -74,24 +74,19 @@ def start():
                   if not (col == None):
                      nums.append(col.number)
             current_tetromino.turn(grid)
-
+            print(nums)
             if ( current_tetromino.type == "O"):
+               current_tetromino.tile_matrix[0][0].number = nums[2]
                current_tetromino.tile_matrix[0][1].number = nums[0]
-               current_tetromino.tile_matrix[1][0].number = nums[1]
-               current_tetromino.tile_matrix[1][1].number = nums[2]
-               current_tetromino.tile_matrix[0][0].number = nums[3]
-               print("a")
-               print(nums)
-            counter = 0
+               current_tetromino.tile_matrix[1][0].number = nums[3]
+               current_tetromino.tile_matrix[1][1].number = nums[1]
             for row in current_tetromino.tile_matrix:
                for col in row:
                   if not (col == None):
-                     col.number = nums[counter]
-                     if(col.number == 2):
+                     if (col.number == 2):
                         col.background_color = Color(238, 238, 218)
                      elif (col.number == 4):
                         col.background_color = Color(237, 224, 200)
-                     counter += 1
 
          print(current_tetromino.tile_matrix[0][0].number)
          print(current_tetromino.tile_matrix[0][1].number)
