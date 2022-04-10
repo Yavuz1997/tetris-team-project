@@ -102,36 +102,31 @@ def start():
                if(colIndex == 0): #Leftmost side
                   if(grid.tile_matrix[rowIndex][colIndex+1] == None):
                      score += col.number
-                     grid.tile_matrix[rowIndex][colIndex].background_color = Color(0, 0, 0)
-                     break
+                     grid.tile_matrix[rowIndex][colIndex] = None
                   elif( not (grid.tile_matrix[rowIndex][colIndex+1] == None) and grid.tile_matrix[rowIndex-1][colIndex+1] == None and grid.tile_matrix[rowIndex][colIndex+2] == None):
                      score += col.number
                      score += grid.tile_matrix[rowIndex][colIndex+1].number
-                     grid.tile_matrix[rowIndex][colIndex].background_color = Color(0, 0, 0)
-                     grid.tile_matrix[rowIndex][colIndex+1].background_color = Color(0, 0, 0)
-                     break
+                     grid.tile_matrix[rowIndex][colIndex] = None
+                     grid.tile_matrix[rowIndex][colIndex+1] = None
                   elif(not (grid.tile_matrix[rowIndex][colIndex+1] == None) and not (grid.tile_matrix[rowIndex][colIndex+2] == None) and grid.tile_matrix[rowIndex-1][colIndex+1] == None
                   and grid.tile_matrix[rowIndex-1][colIndex+2] == None):
                      score += col.number
                      score += grid.tile_matrix[rowIndex][colIndex + 1].number
                      score += grid.tile_matrix[rowIndex][colIndex + 2].number
-                     grid.tile_matrix[rowIndex][colIndex].background_color = Color(0, 0, 0)
-                     grid.tile_matrix[rowIndex][colIndex + 1].background_color = Color(0, 0, 0)
-                     grid.tile_matrix[rowIndex][colIndex + 2].background_color = Color(0, 0, 0)
-                     break
+                     grid.tile_matrix[rowIndex][colIndex] = None
+                     grid.tile_matrix[rowIndex][colIndex + 1] = None
+                     grid.tile_matrix[rowIndex][colIndex + 2] = None
 
                elif(colIndex == 11): #Rightmost side
                   if (grid.tile_matrix[rowIndex][colIndex - 1] == None):
                      score += col.number
-                     grid.tile_matrix[rowIndex][colIndex].background_color = Color(0, 0, 0)
-                     break
+                     grid.tile_matrix[rowIndex][colIndex] = None
                   elif (not (grid.tile_matrix[rowIndex][colIndex - 1] == None) and grid.tile_matrix[rowIndex - 1][
                      colIndex - 1] == None and grid.tile_matrix[rowIndex][colIndex - 2] == None):
                      score += col.number
                      score += grid.tile_matrix[rowIndex][colIndex - 1].number
-                     grid.tile_matrix[rowIndex][colIndex].background_color = Color(0, 0, 0)
-                     grid.tile_matrix[rowIndex][colIndex - 1].background_color = Color(0, 0, 0)
-                     break
+                     grid.tile_matrix[rowIndex][colIndex] = None
+                     grid.tile_matrix[rowIndex][colIndex - 1] = None
                   elif (not (grid.tile_matrix[rowIndex][colIndex - 1] == None) and not (
                           grid.tile_matrix[rowIndex][colIndex - 2] == None) and grid.tile_matrix[rowIndex - 1][
                            colIndex - 1] == None
@@ -140,24 +135,18 @@ def start():
                      score += col.number
                      score += grid.tile_matrix[rowIndex][colIndex - 1].number
                      score += grid.tile_matrix[rowIndex][colIndex - 2].number
-                     grid.tile_matrix[rowIndex][colIndex].background_color = Color(0, 0, 0)
-                     grid.tile_matrix[rowIndex][colIndex - 1].background_color = Color(0, 0, 0)
-                     grid.tile_matrix[rowIndex][colIndex - 2].background_color = Color(0, 0, 0)
-                     break
+                     grid.tile_matrix[rowIndex][colIndex] = None
+                     grid.tile_matrix[rowIndex][colIndex - 1] = None
+                     grid.tile_matrix[rowIndex][colIndex - 2] = None
                else:
                   if (grid.tile_matrix[rowIndex][colIndex - 1] == None and grid.tile_matrix[rowIndex][colIndex + 1] == None):
                      score += col.number
-                     grid.tile_matrix[rowIndex][colIndex].background_color = Color(0, 0, 0)
-                     break
+                     grid.tile_matrix[rowIndex][colIndex] = None
                   elif (colIndex + 2 < 11):
                      if (grid.tile_matrix[rowIndex][colIndex - 1] == None and not (grid.tile_matrix[rowIndex][colIndex + 1] == None) and grid.tile_matrix[rowIndex - 1][colIndex + 1] == None and grid.tile_matrix[rowIndex][colIndex + 2] == None and grid.tile_matrix[rowIndex - 1][colIndex + 2] == None):
                         score += col.number
-                        grid.tile_matrix[rowIndex][colIndex].background_color = Color(0, 0, 0)
-                        grid.tile_matrix[rowIndex][colIndex + 1].background_color = Color(0, 0, 0)
-                        break
-            else:
-               continue  # only executed if the inner loop did NOT break
-            break
+                        grid.tile_matrix[rowIndex][colIndex] = None
+                        grid.tile_matrix[rowIndex][colIndex + 1] = None
       score = grid.checkRows(grid.tile_matrix, score) # remove filled rows, move rows down
 
       # place the active tetromino on the grid when it cannot go down anymore
@@ -287,7 +276,7 @@ def display_game_over(score):
 # start() function is specified as the entry point (main function) from which
 # the program starts execution
 if __name__== '__main__':
-   sys.setrecursionlimit(2000)
+   sys.setrecursionlimit(10000)
    while True:
        score = start()
        display_game_over(score)
