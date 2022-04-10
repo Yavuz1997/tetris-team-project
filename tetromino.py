@@ -545,7 +545,6 @@ class Tetromino:
             occupied_tiles.append((0, 1))
 
         if self.type == 'Z':
-            print("asdasdasdasd")
             occupied_tiles = []
             n = 3  # n = number of rows = number of columns in the tile matrix
             if (self.turnType == 0):
@@ -554,25 +553,21 @@ class Tetromino:
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((2, 1))
             if (self.turnType == 1):
-                print("turntype 1")
                 occupied_tiles.append((1, 2))
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((2, 1))
                 occupied_tiles.append((2, 0))
             if (self.turnType == 2):
-                print("turntype 2")
                 occupied_tiles.append((0, 1))
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((1, 2))
                 occupied_tiles.append((2, 2))
             if (self.turnType == 3):
-                print("turntype 3")
                 occupied_tiles.append((0, 2))
                 occupied_tiles.append((0, 1))
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((1, 0))
         if self.type == 'S':
-            print("asdasdasdasd")
             occupied_tiles = []
             n = 3  # n = number of rows = number of columns in the tile matrix
             if (self.turnType == 0):
@@ -581,25 +576,21 @@ class Tetromino:
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((2, 0))
             if (self.turnType == 1):
-                print("turntype 1")
                 occupied_tiles.append((1, 0))
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((2, 1))
                 occupied_tiles.append((2, 2))
             if (self.turnType == 2):
-                print("turntype 2")
                 occupied_tiles.append((0, 2))
                 occupied_tiles.append((1, 2))
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((2, 1))
             if (self.turnType == 3):
-                print("turntype 3")
                 occupied_tiles.append((0, 0))
                 occupied_tiles.append((0, 1))
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((1, 2))
         if self.type == 'J':
-            print("asdasdasdasd")
             occupied_tiles = []
             n = 3  # n = number of rows = number of columns in the tile matrix
             if (self.turnType == 0):
@@ -608,53 +599,44 @@ class Tetromino:
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((1, 2))
             if (self.turnType == 1):
-                print("turntype 1")
                 occupied_tiles.append((0, 0))
                 occupied_tiles.append((0, 1))
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((2, 1))
             if (self.turnType == 2):
-                print("turntype 2")
                 occupied_tiles.append((1, 0))
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((1, 2))
                 occupied_tiles.append((2, 0))
             if (self.turnType == 3):
-                print("turntype 3")
                 occupied_tiles.append((0, 1))
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((2, 1))
                 occupied_tiles.append((2, 2))
         if self.type == 'L':
-            print("asdasdasdasd")
             occupied_tiles = []
             n = 3  # n = number of rows = number of columns in the tile matrix
             if (self.turnType == 0):
-                print("turntype 0")
                 occupied_tiles.append((1, 0))  # (column_index, row_index)
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((1, 2))
                 occupied_tiles.append((2, 2))
             if (self.turnType == 1):
-                print("turntype 1")
                 occupied_tiles.append((0, 1))
                 occupied_tiles.append((0, 2))
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((2, 1))
             if (self.turnType == 2):
-                print("turntype 2")
                 occupied_tiles.append((0, 0))
                 occupied_tiles.append((1, 0))
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((1, 2))
             if (self.turnType == 3):
-                print("turntype 3")
                 occupied_tiles.append((0, 1))
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((2, 1))
                 occupied_tiles.append((2, 0))
         if self.type == 'I':
-            print("asdasdasdasd")
             occupied_tiles = []
             n = 4  # n = number of rows = number of columns in the tile matrix
             if (self.turnType == 0):
@@ -663,25 +645,21 @@ class Tetromino:
                 occupied_tiles.append((1, 2))
                 occupied_tiles.append((1, 3))
             if (self.turnType == 1):
-                print("turntype 1")
                 occupied_tiles.append((0, 1))
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((2, 1))
                 occupied_tiles.append((3, 1))
             if (self.turnType == 2):
-                print("turntype 2")
                 occupied_tiles.append((2, 0))
                 occupied_tiles.append((2, 1))
                 occupied_tiles.append((2, 2))
                 occupied_tiles.append((2, 3))
             if (self.turnType == 3):
-                print("turntype 3")
                 occupied_tiles.append((0, 2))
                 occupied_tiles.append((1, 2))
                 occupied_tiles.append((2, 2))
                 occupied_tiles.append((3, 2))
         if self.type == 'T':
-            print("asdasdasdasd")
             occupied_tiles = []
             n = 3  # n = number of rows = number of columns in the tile matrix
             if (self.turnType == 0):
@@ -690,19 +668,16 @@ class Tetromino:
                 occupied_tiles.append((1, 2))
                 occupied_tiles.append((2, 1))
             if (self.turnType == 1):
-                print("turntype 1")
                 occupied_tiles.append((1, 0))
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((1, 2))
                 occupied_tiles.append((0, 1))
             if (self.turnType == 2):
-                print("turntype 2")
                 occupied_tiles.append((0, 1))
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((2, 1))
                 occupied_tiles.append((1, 0))
             if (self.turnType == 3):
-                print("turntype 3")
                 occupied_tiles.append((1, 0))
                 occupied_tiles.append((1, 1))
                 occupied_tiles.append((1, 2))

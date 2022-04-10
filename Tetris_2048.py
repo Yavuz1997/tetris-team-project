@@ -74,7 +74,6 @@ def start():
                   if not (col == None):
                      nums.append(col.number)
             current_tetromino.turn(grid)
-            print(nums)
             if ( current_tetromino.type == "O"):
                current_tetromino.tile_matrix[0][0].number = nums[2]
                current_tetromino.tile_matrix[0][1].number = nums[0]
@@ -87,11 +86,6 @@ def start():
                         col.background_color = Color(238, 238, 218)
                      elif (col.number == 4):
                         col.background_color = Color(237, 224, 200)
-
-         print(current_tetromino.tile_matrix[0][0].number)
-         print(current_tetromino.tile_matrix[0][1].number)
-         print(current_tetromino.tile_matrix[1][0].number)
-         print(current_tetromino.tile_matrix[1][1].number)
          # clear the queue of the pressed keys for a smoother interaction
          stddraw.clearKeysTyped()
 
