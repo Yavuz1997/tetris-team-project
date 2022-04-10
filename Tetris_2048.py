@@ -12,6 +12,16 @@ import numpy as np
 #-------------------------------------------------------------------------------
 # Main function where this program starts execution
 
+def pause_menu():
+   stddraw.setFontSize(35)
+   stddraw.setPenColor(Color(0, 0, 0))
+   stddraw.boldText(6, 10, "Click to Resume")
+   while True:
+      stddraw.show(50)
+      if stddraw.mousePressed():
+         break
+   return
+
 def start():
    # set the dimensions of the game grid
    grid_h, grid_w = 20, 18
@@ -40,6 +50,14 @@ def start():
    score = 0
    # the main game loop (keyboard interaction for moving the tetromino) 
    while True:
+      if stddraw.mousePressed():
+         # get the x and y coordinates of the location at which the mouse has
+         # most recently been left-clicked
+         mouse_x, mouse_y = stddraw.mouseX(), stddraw.mouseY()
+         # check if these coordinates are inside the button
+         if mouse_x >= 15 and mouse_x <= 17:
+            if mouse_y >= 18.5 and mouse_y <= 19.5:
+               pause_menu()
       if(has_next == 0):
          next_tetromino = create_tetromino(grid_h, grid_w - 6)
          has_next += 1
