@@ -113,28 +113,27 @@ def start():
                         if not (col == None):
                            nums.append(col.number)
                current_tetromino.turn(grid)
-               print(current_tetromino.tile_matrix[2][1])
                print("a")
                if (current_tetromino.turnType == 0):
-                  current_tetromino.tile_matrix[1][0].number = nums[0]
-                  current_tetromino.tile_matrix[2][0].number = nums[1]
-                  current_tetromino.tile_matrix[0][1].number = nums[2]
-                  current_tetromino.tile_matrix[1][1].number = nums[3]
-               elif (current_tetromino.turnType == 1):
-                  current_tetromino.tile_matrix[2][1].number = nums[0]
-                  current_tetromino.tile_matrix[2][2].number = nums[1]
+                  current_tetromino.tile_matrix[0][1].number = nums[0]
+                  current_tetromino.tile_matrix[0][2].number = nums[1]
                   current_tetromino.tile_matrix[1][0].number = nums[2]
                   current_tetromino.tile_matrix[1][1].number = nums[3]
+               elif (current_tetromino.turnType == 1):
+                  current_tetromino.tile_matrix[1][2].number = nums[0]
+                  current_tetromino.tile_matrix[2][2].number = nums[1]
+                  current_tetromino.tile_matrix[0][1].number = nums[2]
+                  current_tetromino.tile_matrix[1][1].number = nums[3]
                elif (current_tetromino.turnType == 2):
-                  current_tetromino.tile_matrix[1][1].number = nums[0]
-                  current_tetromino.tile_matrix[2][1].number = nums[1]
-                  current_tetromino.tile_matrix[0][2].number = nums[2]
-                  current_tetromino.tile_matrix[1][2].number = nums[3]
+                  current_tetromino.tile_matrix[2][1].number = nums[0]
+                  current_tetromino.tile_matrix[2][0].number = nums[1]
+                  current_tetromino.tile_matrix[1][2].number = nums[2]
+                  current_tetromino.tile_matrix[1][1].number = nums[3]
                elif (current_tetromino.turnType == 3):
-                  current_tetromino.tile_matrix[0][0].number = nums[0]
-                  current_tetromino.tile_matrix[0][1].number = nums[1]
-                  current_tetromino.tile_matrix[1][1].number = nums[2]
-                  current_tetromino.tile_matrix[2][1].number = nums[3]
+                  current_tetromino.tile_matrix[1][0].number = nums[0]
+                  current_tetromino.tile_matrix[0][0].number = nums[1]
+                  current_tetromino.tile_matrix[2][1].number = nums[2]
+                  current_tetromino.tile_matrix[1][1].number = nums[3]
                for row in current_tetromino.tile_matrix:
                   for col in row:
                      if not (col == None):
