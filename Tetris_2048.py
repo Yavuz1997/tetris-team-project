@@ -145,8 +145,19 @@ def start():
                   elif (colIndex + 2 < 11):
                      if (grid.tile_matrix[rowIndex][colIndex - 1] == None and not (grid.tile_matrix[rowIndex][colIndex + 1] == None) and grid.tile_matrix[rowIndex - 1][colIndex + 1] == None and grid.tile_matrix[rowIndex][colIndex + 2] == None and grid.tile_matrix[rowIndex - 1][colIndex + 2] == None):
                         score += col.number
+                        score += grid.tile_matrix[rowIndex][colIndex + 1].number
                         grid.tile_matrix[rowIndex][colIndex] = None
                         grid.tile_matrix[rowIndex][colIndex + 1] = None
+                  elif (colIndex + 3 < 11):
+                     if (grid.tile_matrix[rowIndex][colIndex - 1] == None and not (grid.tile_matrix[rowIndex][colIndex + 1] == None) and not (grid.tile_matrix[rowIndex][colIndex + 2] == None)
+                     and grid.tile_matrix[rowIndex-1][colIndex + 1] == None and grid.tile_matrix[rowIndex-1][colIndex + 2] == None and grid.tile_matrix[rowIndex][colIndex + 3] == None):
+                        score += col.number
+                        score += grid.tile_matrix[rowIndex][colIndex + 1].number
+                        score += grid.tile_matrix[rowIndex][colIndex + 2].number
+                        grid.tile_matrix[rowIndex][colIndex] = None
+                        grid.tile_matrix[rowIndex][colIndex + 1] = None
+                        grid.tile_matrix[rowIndex][colIndex + 2] = None
+
       score = grid.checkRows(grid.tile_matrix, score) # remove filled rows, move rows down
 
       # place the active tetromino on the grid when it cannot go down anymore
