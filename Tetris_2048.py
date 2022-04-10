@@ -91,73 +91,7 @@ def start():
       success = current_tetromino.move("down", grid)
 
       score = grid.checkColumns(grid.tile_matrix, score) # add same tiles, move columns, change colors
-      # grid.tile_matrix[rowIndex-1][colIndex] # under the tile
-      # grid.tile_matrix[rowIndex][colIndex+1] # right side of tile
-      # grid.tile_matrix[rowIndex+1][colIndex] # upper side of tile
-      for rowIndex, row in enumerate(grid.tile_matrix):
-         if( rowIndex == 0):
-            continue
-         for colIndex, col in enumerate(row):
-            if (grid.tile_matrix[rowIndex-1][colIndex] == None and not ( col == None)):
-               if(colIndex == 0): #Leftmost side
-                  if(grid.tile_matrix[rowIndex][colIndex+1] == None):
-                     score += col.number
-                     grid.tile_matrix[rowIndex][colIndex] = None
-                  elif( not (grid.tile_matrix[rowIndex][colIndex+1] == None) and grid.tile_matrix[rowIndex-1][colIndex+1] == None and grid.tile_matrix[rowIndex][colIndex+2] == None):
-                     score += col.number
-                     score += grid.tile_matrix[rowIndex][colIndex+1].number
-                     grid.tile_matrix[rowIndex][colIndex] = None
-                     grid.tile_matrix[rowIndex][colIndex+1] = None
-                  elif(not (grid.tile_matrix[rowIndex][colIndex+1] == None) and not (grid.tile_matrix[rowIndex][colIndex+2] == None) and grid.tile_matrix[rowIndex-1][colIndex+1] == None
-                  and grid.tile_matrix[rowIndex-1][colIndex+2] == None):
-                     score += col.number
-                     score += grid.tile_matrix[rowIndex][colIndex + 1].number
-                     score += grid.tile_matrix[rowIndex][colIndex + 2].number
-                     grid.tile_matrix[rowIndex][colIndex] = None
-                     grid.tile_matrix[rowIndex][colIndex + 1] = None
-                     grid.tile_matrix[rowIndex][colIndex + 2] = None
-
-               elif(colIndex == 11): #Rightmost side
-                  if (grid.tile_matrix[rowIndex][colIndex - 1] == None):
-                     score += col.number
-                     grid.tile_matrix[rowIndex][colIndex] = None
-                  elif (not (grid.tile_matrix[rowIndex][colIndex - 1] == None) and grid.tile_matrix[rowIndex - 1][
-                     colIndex - 1] == None and grid.tile_matrix[rowIndex][colIndex - 2] == None):
-                     score += col.number
-                     score += grid.tile_matrix[rowIndex][colIndex - 1].number
-                     grid.tile_matrix[rowIndex][colIndex] = None
-                     grid.tile_matrix[rowIndex][colIndex - 1] = None
-                  elif (not (grid.tile_matrix[rowIndex][colIndex - 1] == None) and not (
-                          grid.tile_matrix[rowIndex][colIndex - 2] == None) and grid.tile_matrix[rowIndex - 1][
-                           colIndex - 1] == None
-                        and grid.tile_matrix[rowIndex - 1][colIndex - 2] == None and grid.tile_matrix[rowIndex][
-                           colIndex - 3] == None):
-                     score += col.number
-                     score += grid.tile_matrix[rowIndex][colIndex - 1].number
-                     score += grid.tile_matrix[rowIndex][colIndex - 2].number
-                     grid.tile_matrix[rowIndex][colIndex] = None
-                     grid.tile_matrix[rowIndex][colIndex - 1] = None
-                     grid.tile_matrix[rowIndex][colIndex - 2] = None
-               else:
-                  if (grid.tile_matrix[rowIndex][colIndex - 1] == None and grid.tile_matrix[rowIndex][colIndex + 1] == None):
-                     score += col.number
-                     grid.tile_matrix[rowIndex][colIndex] = None
-                  elif (colIndex + 2 < 11):
-                     if (grid.tile_matrix[rowIndex][colIndex - 1] == None and not (grid.tile_matrix[rowIndex][colIndex + 1] == None) and grid.tile_matrix[rowIndex - 1][colIndex + 1] == None and grid.tile_matrix[rowIndex][colIndex + 2] == None and grid.tile_matrix[rowIndex - 1][colIndex + 2] == None):
-                        score += col.number
-                        score += grid.tile_matrix[rowIndex][colIndex + 1].number
-                        grid.tile_matrix[rowIndex][colIndex] = None
-                        grid.tile_matrix[rowIndex][colIndex + 1] = None
-                  elif (colIndex + 3 < 11):
-                     if (grid.tile_matrix[rowIndex][colIndex - 1] == None and not (grid.tile_matrix[rowIndex][colIndex + 1] == None) and not (grid.tile_matrix[rowIndex][colIndex + 2] == None)
-                     and grid.tile_matrix[rowIndex-1][colIndex + 1] == None and grid.tile_matrix[rowIndex-1][colIndex + 2] == None and grid.tile_matrix[rowIndex][colIndex + 3] == None):
-                        score += col.number
-                        score += grid.tile_matrix[rowIndex][colIndex + 1].number
-                        score += grid.tile_matrix[rowIndex][colIndex + 2].number
-                        grid.tile_matrix[rowIndex][colIndex] = None
-                        grid.tile_matrix[rowIndex][colIndex + 1] = None
-                        grid.tile_matrix[rowIndex][colIndex + 2] = None
-
+      score = grid.elimGaps(grid.tile_matrix, score)
       score = grid.checkRows(grid.tile_matrix, score) # remove filled rows, move rows down
 
       # place the active tetromino on the grid when it cannot go down anymore

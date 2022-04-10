@@ -181,3 +181,79 @@ class GameGrid:
                   break
                tile_matrix[j] = tile_matrix[j + 1]
       return score
+
+   def elimGaps(self, tile_matrix, score):
+      for rowIndex, row in enumerate(tile_matrix):
+         if (rowIndex == 0):
+            continue
+         for colIndex, col in enumerate(row):
+            if (tile_matrix[rowIndex - 1][colIndex] == None and not (col == None)):
+               if (colIndex == 0):  # Leftmost side
+                  if (tile_matrix[rowIndex][colIndex + 1] == None):
+                     score += col.number
+                     tile_matrix[rowIndex][colIndex] = None
+                  elif (not (tile_matrix[rowIndex][colIndex + 1] == None) and tile_matrix[rowIndex - 1][
+                     colIndex + 1] == None and tile_matrix[rowIndex][colIndex + 2] == None):
+                     score += col.number
+                     score += tile_matrix[rowIndex][colIndex + 1].number
+                     tile_matrix[rowIndex][colIndex] = None
+                     tile_matrix[rowIndex][colIndex + 1] = None
+                  elif (not (tile_matrix[rowIndex][colIndex + 1] == None) and not (
+                        tile_matrix[rowIndex][colIndex + 2] == None) and tile_matrix[rowIndex - 1][
+                        colIndex + 1] == None
+                        and tile_matrix[rowIndex - 1][colIndex + 2] == None):
+                     score += col.number
+                     score += tile_matrix[rowIndex][colIndex + 1].number
+                     score += tile_matrix[rowIndex][colIndex + 2].number
+                     tile_matrix[rowIndex][colIndex] = None
+                     tile_matrix[rowIndex][colIndex + 1] = None
+                     tile_matrix[rowIndex][colIndex + 2] = None
+
+               elif (colIndex == 11):  # Rightmost side
+                  if (tile_matrix[rowIndex][colIndex - 1] == None):
+                     score += col.number
+                     tile_matrix[rowIndex][colIndex] = None
+                  elif (not (tile_matrix[rowIndex][colIndex - 1] == None) and tile_matrix[rowIndex - 1][
+                     colIndex - 1] == None and tile_matrix[rowIndex][colIndex - 2] == None):
+                     score += col.number
+                     score += tile_matrix[rowIndex][colIndex - 1].number
+                     tile_matrix[rowIndex][colIndex] = None
+                     tile_matrix[rowIndex][colIndex - 1] = None
+                  elif (not (tile_matrix[rowIndex][colIndex - 1] == None) and not (
+                           tile_matrix[rowIndex][colIndex - 2] == None) and tile_matrix[rowIndex - 1][
+                            colIndex - 1] == None
+                         and tile_matrix[rowIndex - 1][colIndex - 2] == None and tile_matrix[rowIndex][
+                            colIndex - 3] == None):
+                     score += col.number
+                     score += tile_matrix[rowIndex][colIndex - 1].number
+                     score += tile_matrix[rowIndex][colIndex - 2].number
+                     tile_matrix[rowIndex][colIndex] = None
+                     tile_matrix[rowIndex][colIndex - 1] = None
+                     tile_matrix[rowIndex][colIndex - 2] = None
+               else:
+                  if (tile_matrix[rowIndex][colIndex - 1] == None and tile_matrix[rowIndex][
+                     colIndex + 1] == None):
+                     score += col.number
+                     tile_matrix[rowIndex][colIndex] = None
+                  if (colIndex + 2 <= 11):
+                     if (tile_matrix[rowIndex][colIndex - 1] == None and not (
+                              tile_matrix[rowIndex][colIndex + 1] == None) and tile_matrix[rowIndex - 1][
+                         colIndex + 1] == None and tile_matrix[rowIndex][colIndex + 2] == None):
+                        score += col.number
+                        score += tile_matrix[rowIndex][colIndex + 1].number
+                        tile_matrix[rowIndex][colIndex] = None
+                        tile_matrix[rowIndex][colIndex + 1] = None
+                  if (colIndex + 3 >= 12):
+                     continue
+                  if (tile_matrix[rowIndex][colIndex - 1] == None and not (
+                           tile_matrix[rowIndex][colIndex + 1] == None) and not (
+                           tile_matrix[rowIndex][colIndex + 2] == None) and tile_matrix[rowIndex - 1][
+                      colIndex + 1] == None and tile_matrix[rowIndex - 1][colIndex + 2] == None and
+                           tile_matrix[rowIndex][colIndex + 3] == None):
+                     score += col.number
+                     score += tile_matrix[rowIndex][colIndex + 1].number
+                     score += tile_matrix[rowIndex][colIndex + 2].number
+                     tile_matrix[rowIndex][colIndex] = None
+                     tile_matrix[rowIndex][colIndex + 1] = None
+                     tile_matrix[rowIndex][colIndex + 2] = None
+      return score
