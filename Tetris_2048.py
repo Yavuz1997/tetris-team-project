@@ -49,6 +49,7 @@ def start():
    score = 0
    # the main game loop (keyboard interaction for moving the tetromino) 
    while True:
+      # Used to pause the game
       if stddraw.mousePressed():
          # get the x and y coordinates of the location at which the mouse has
          # most recently been left-clicked
@@ -57,6 +58,7 @@ def start():
          if mouse_x >= 15 and mouse_x <= 17:
             if mouse_y >= 18.5 and mouse_y <= 19.5:
                pause_menu()
+      # Create tetromino that will be used to show next piece
       if(has_next == 0):
          next_tetromino = create_tetromino(grid_h, grid_w - 6)
          has_next += 1
@@ -334,9 +336,9 @@ def start():
       # move the active tetromino down by one at each iteration (auto fall)
       success = current_tetromino.move("down", grid)
 
-      score = grid.checkColumns(grid.tile_matrix, score) # add same tiles, move columns, change colors
-      score = grid.elimGaps(grid.tile_matrix, score)
-      score = grid.checkRows(grid.tile_matrix, score) # remove filled rows, move rows down
+      score = grid.checkColumns(grid.tile_matrix, score) # add same tiles, move columns, change colors, update score
+      score = grid.elimGaps(grid.tile_matrix, score) # removing isolated tiles, update score
+      score = grid.checkRows(grid.tile_matrix, score) # remove filled rows, move rows down, update score
 
       # place the active tetromino on the grid when it cannot go down anymore
       if not success:

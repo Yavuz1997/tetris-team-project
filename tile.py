@@ -15,7 +15,7 @@ class Tile:
 
       randomNums = [2, 4]
       random_num_index = random.randint(0, len(randomNums) - 1)
-      # set the number on the tile
+      # set the number on the tile randomly
       self.number = randomNums[random_num_index]
       # set the colors of the tile
       if(self.number == 2):

@@ -32,9 +32,9 @@ class GameGrid:
       # draw the game grid
       self.draw_grid()
       stddraw.setPenColor(Color(242,203,155))
-      stddraw.filledRectangle(11.5,-0.5,6,20)
+      stddraw.filledRectangle(11.5,-0.5,6,20) # UI background
       stddraw.setPenColor(Color(237, 197, 63))
-      stddraw.filledRectangle(15, 18.5, 2, 0.85)
+      stddraw.filledRectangle(15, 18.5, 2, 0.85) # Pause botton background
       stddraw.setPenColor(Color(245, 149, 99))
       stddraw.setPenColor(Color(245, 149, 99))
       stddraw.setFontSize(25)
@@ -196,6 +196,7 @@ class GameGrid:
                tile_matrix[j] = tile_matrix[j + 1]
       return score
 
+   # Method that checks tiles and deletes the tiles if they are isolated / not directly touching another tetromino
    def elimGaps(self, tile_matrix, score):
       for rowIndex, row in enumerate(tile_matrix):
          if (rowIndex == 0):
