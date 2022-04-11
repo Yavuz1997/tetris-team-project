@@ -153,7 +153,9 @@ class GameGrid:
                   score += tile.number
                   score += column[tileIndex + 1].number
                   tile.number += column[tileIndex + 1].number # Add tile numbers
-                  if(tile.number == 8):   # Change tile colours with the values
+                  if (tile.number == 4):  # Change tile colours with the values
+                     tile.background_color = Color(237, 224, 200)
+                  elif(tile.number == 8):   # Change tile colours with the values
                      tile.background_color = Color(242, 177, 121)
                   elif(tile.number == 16):
                      tile.background_color = Color(245, 149, 99)
